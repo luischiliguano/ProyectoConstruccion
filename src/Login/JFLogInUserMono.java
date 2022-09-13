@@ -43,25 +43,29 @@ public class JFLogInUserMono extends javax.swing.JFrame {
 
     public void logInMonoPlayer() throws SQLException {
         String nickName = this.jTFNickName.getText().toUpperCase();
-        System.out.println("NICK NAME PANEL " + nickName);
+
         String password = this.jTFPassword.getText();
 
         if (password.equals("") || nickName.equals("")) {
             JOptionPane.showMessageDialog(null, "Complete los campos correspondientes");
+        } else {
+            comprobarExistenciaUsuario(nickName, password);
+
         }
 
-        playerConection = new PlayerConection();
-        System.out.println("ANTES DEL IF");
-        System.out.println("NICK NAME BASE" + playerConection.ObtenerNick(nickName));
+    }
 
-        if ((playerConection.ObtenerNick(nickName) ).equals(nickName) && password.equals(playerConection.ObtenerPassword(nickName))) {
-            System.out.println("PRIMER IF");
+    public void comprobarExistenciaUsuario(String nickName, String password) throws SQLException {
+        playerConection = new PlayerConection();
+
+        if ((playerConection.ObtenerNick(nickName)).equals(nickName)
+                && password.equals(playerConection.ObtenerPassword(nickName))) {
 
             user = new Player(nickName, password);
             JOptionPane.showMessageDialog(null, "Credenciales "
                     + "Corectos");
 
-            playerConection.ModificarCurrentActive1(user);
+            playerConection.ModificarCurrentActiveA1(user);
             StartMenu menu = new StartMenu();
             menu.setVisible(true);
             this.dispose();
@@ -75,7 +79,6 @@ public class JFLogInUserMono extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(null, "El usuario no existe");
             }
 
-            //System.out.println("NO ENTRA AL SEGUNDO IF");
         }
     }
 
@@ -164,13 +167,10 @@ public class JFLogInUserMono extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jTFNickName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel3))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(jTFPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(28, 28, 28)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTFPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -250,7 +250,7 @@ public class JFLogInUserMono extends javax.swing.JFrame {
         try {
             logInMonoPlayer();
         } catch (SQLException ex) {
-            Logger.getLogger(JFLogInUserMono.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "ERROR INESPERADO " + ex);
         }
     }//GEN-LAST:event_jBLogInActionPerformed
 

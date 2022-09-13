@@ -10,6 +10,7 @@ import Snail.StartMenu;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -18,19 +19,18 @@ import java.util.logging.Logger;
 public class JFScoresTable extends javax.swing.JFrame {
 
     PlayerConection playerConection = new PlayerConection();
+    ScoreConection scoreConection = new ScoreConection();
 
     public JFScoresTable() throws SQLException {
         initComponents();
-        Mostrar();
+        mostrarTabla();
         setLocationRelativeTo(this);
     }
 
-    ScoreConection scoreCon = new ScoreConection();
+    void mostrarTabla() throws SQLException {
+        String id = String.valueOf(playerConection.ObtenerIDDeNick(playerConection.ObtenerNickDeCurrentActive(1)));
 
-    void Mostrar() throws SQLException {
-        String id = String.valueOf(playerConection.ObtenerID(playerConection.ObtenerNickCurrentActive(1)));
-
-        scoreCon.Mostrar(jTableScores, id);
+        scoreConection.Mostrar(jTableScores, id);
     }
 
     public void backMenu() throws SQLException {
@@ -136,7 +136,7 @@ public class JFScoresTable extends javax.swing.JFrame {
         try {
             backMenu();
         } catch (SQLException ex) {
-            Logger.getLogger(JFScoresTable.class.getName()).log(Level.SEVERE, null, ex);
+             JOptionPane.showMessageDialog(null, "ERROR INESPERADO " + ex);
         }
     }//GEN-LAST:event_jBVolverActionPerformed
 

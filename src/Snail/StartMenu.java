@@ -5,6 +5,7 @@
 package Snail;
 
 import Conection.PlayerConection;
+import Login.JFLogInUserMono;
 import Login.JFScoresTable;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -27,14 +28,16 @@ public class StartMenu extends javax.swing.JFrame {
     }
 
     public void exitGame() {
-        System.exit(0);
-        //checkFacade = new CheckFacade();
+        //System.exit(0);
+        this.setVisible(false);
+        JFLogInUserMono login = new JFLogInUserMono();
+        login.setVisible(true);
     }
 
     public void cambiarCurrentActive() {
         try {
-            String nick = player.ObtenerNickCurrentActive(1);
-            player.ModificarCurrentActive0(nick);
+            String nick = player.ObtenerNickDeCurrentActive(1);
+            player.ModificarCurrentActiveA0(nick);
         } catch (SQLException ex) {
             Logger.getLogger(StartMenu.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -45,6 +48,10 @@ public class StartMenu extends javax.swing.JFrame {
         new JFScoresTable().setVisible(true);
         this.setVisible(false);
 
+    }
+    
+    public void deleteAccount() throws SQLException{
+        player.Eliminar();
     }
 
     /**
@@ -61,6 +68,7 @@ public class StartMenu extends javax.swing.JFrame {
         Return = new javax.swing.JButton();
         jBScores = new javax.swing.JButton();
         jBExit = new javax.swing.JButton();
+        jBDeleteAccount = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Start Menu");
@@ -109,6 +117,17 @@ public class StartMenu extends javax.swing.JFrame {
             }
         });
 
+        jBDeleteAccount.setFont(new java.awt.Font("KenVector Future Thin", 0, 18)); // NOI18N
+        jBDeleteAccount.setText("DELETE ACCOUNT");
+        jBDeleteAccount.setBorder(null);
+        jBDeleteAccount.setBorderPainted(false);
+        jBDeleteAccount.setFocusPainted(false);
+        jBDeleteAccount.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBDeleteAccountActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout DeskLayout = new javax.swing.GroupLayout(Desk);
         Desk.setLayout(DeskLayout);
         DeskLayout.setHorizontalGroup(
@@ -123,7 +142,8 @@ public class StartMenu extends javax.swing.JFrame {
                         .addGroup(DeskLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jBScores, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Return, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(start1Player, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(start1Player, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jBDeleteAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(152, 152, 152))))
         );
         DeskLayout.setVerticalGroup(
@@ -131,13 +151,15 @@ public class StartMenu extends javax.swing.JFrame {
             .addGroup(DeskLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jBExit)
-                .addGap(85, 85, 85)
+                .addGap(64, 64, 64)
                 .addComponent(start1Player, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
+                .addGap(40, 40, 40)
                 .addComponent(jBScores, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44)
+                .addGap(48, 48, 48)
                 .addComponent(Return, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(110, Short.MAX_VALUE))
+                .addGap(38, 38, 38)
+                .addComponent(jBDeleteAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -182,6 +204,17 @@ public class StartMenu extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jBExitActionPerformed
 
+    private void jBDeleteAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBDeleteAccountActionPerformed
+        try {
+            deleteAccount();
+        } catch (SQLException ex) {
+            Logger.getLogger(StartMenu.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        exitGame();
+        
+    }//GEN-LAST:event_jBDeleteAccountActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -221,6 +254,7 @@ public class StartMenu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel Desk;
     private javax.swing.JButton Return;
+    private javax.swing.JButton jBDeleteAccount;
     private javax.swing.JButton jBExit;
     private javax.swing.JButton jBScores;
     private javax.swing.JButton start1Player;

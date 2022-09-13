@@ -53,9 +53,9 @@ public class ScoreConection {
     }
 
     public boolean Insertar(Score score) throws SQLException {
-         boolean r = false;
+        boolean r = false;
         String sql = "INSERT INTO SCORE (VALUE, GAME, PLAYER_ID, DATE_GAME)values (?,?,?,?)";
-        try{
+        try {
             con = Conection.conectar();
             st = Conection.getStatement();
             pst = Conection.getPreparedStatement(sql);
@@ -64,18 +64,18 @@ public class ScoreConection {
             pst.setInt(3, score.getPlayerID());
             pst.setString(4, score.getDate());
             pst.executeUpdate();
-        } finally{
-          if(pst != null){
+        } finally {
+            if (pst != null) {
                 Conection.Cerrar(pst);
             }
-            if(con != null){
+            if (con != null) {
                 Conection.Cerrar(con);
-            }  
+            }
         }
         return r;
     }
 
-    public Integer Modificar(Score score) throws SQLException {
+    /*public Integer Modificar(Score score) throws SQLException {
         Integer r = null;
         try {
             String sql = "update SCORE set VALUE = ? where PLAYER_ID = ?";
@@ -99,8 +99,6 @@ public class ScoreConection {
             }
         }
         return r;
-    }
-
-    
+    }*/
 
 }

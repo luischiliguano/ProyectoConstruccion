@@ -107,7 +107,7 @@ public class PlayerConection {
 
     }
 
-    public Integer ModificarCurrentActive1(Player player) throws SQLException {
+    public Integer ModificarCurrentActiveA1(Player player) throws SQLException {
         Integer r = null;
         try {
             String sql = "update PLAYER set CURRENT_ACTIVE = ? where NICK = ?";
@@ -133,7 +133,7 @@ public class PlayerConection {
         return r;
     }
 
-    public Integer ModificarCurrentActive0(String nick) throws SQLException {
+    public Integer ModificarCurrentActiveA0(String nick) throws SQLException {
         Integer r = null;
         try {
             String sql = "update PLAYER set CURRENT_ACTIVE = ? where NICK = ?";
@@ -159,7 +159,7 @@ public class PlayerConection {
         return r;
     }
 
-    public String ObtenerNickCurrentActive(int currentActive) {
+    public String ObtenerNickDeCurrentActive(int currentActive) {
         String nickName = "";
         String sql = "SELECT NICK FROM PLAYER WHERE CURRENT_ACTIVE = '" + currentActive + "'";
         try {
@@ -180,7 +180,7 @@ public class PlayerConection {
 
     }
 
-    public int ObtenerID(String nickName) {
+    public int ObtenerIDDeNick(String nickName) {
         int id = 0;
         String sql = "SELECT PLAYER_ID FROM PLAYER WHERE NICK = '" + nickName + "'";
         try {
@@ -199,5 +199,32 @@ public class PlayerConection {
         System.out.print(id);
 
         return id;
+    }
+    
+    public int Eliminar() throws SQLException{
+        int r;
+        String sql = "delete from PLAYER where CURRENT_ACTIVE = ?";
+        try {   
+        con = Conection.conectar();
+        pst = Conection.getPreparedStatement(sql);
+        pst.setInt(1,1); //Eliminar la cuenta con current Active = 1
+        r = pst.executeUpdate();
+        if(r>0)
+        {
+            JOptionPane.showMessageDialog(null, "Eliminado con éxito");
+        } 
+            else
+            {
+            JOptionPane.showMessageDialog(null, "No se pudo Eliminar", "ATENCION!",JOptionPane.ERROR_MESSAGE);
+            }
+        } finally{
+            if(pst != null){
+                Conection.Cerrar(pst);
+            }
+            if(con != null){
+                Conection.Cerrar(con);
+            }
+        }
+        return r;
     }
 }

@@ -166,7 +166,7 @@ public class SnailGame extends JFrame implements Runnable {
 
     private void asignarScore(){
         JOptionPane.showMessageDialog(null, "Your score is " + score, "GAME OVER", 1);
-        int num = playerCon.ObtenerID(playerCon.ObtenerNickCurrentActive(1));
+        int num = playerCon.ObtenerIDDeNick(playerCon.ObtenerNickDeCurrentActive(1));
         scoreB = new Score(score, num, setDateNow(), "SNAIL GAME");
         try {
             scoreCon.Insertar(scoreB);

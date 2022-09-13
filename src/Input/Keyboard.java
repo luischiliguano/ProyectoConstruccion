@@ -27,8 +27,6 @@ public class Keyboard implements KeyListener {
 
     }
 
-    /* Methods */
- /* Updates the scenario */
     public void update() {
         LEFT = keys[KeyEvent.VK_LEFT];        // LEFT key code
         RIGHT = keys[KeyEvent.VK_RIGHT];

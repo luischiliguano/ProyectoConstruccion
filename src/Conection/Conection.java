@@ -17,53 +17,49 @@ import javax.swing.JOptionPane;
  * @author User
  */
 public class Conection {
+
     static Connection cn;
     static Statement st;
- 
- 
-    public static Connection conectar(){
-        try 
-        {
+
+    public static Connection conectar() {
+        try {
             Class.forName("oracle.jdbc.driver.OracleDriver");
             String url = "jdbc:oracle:thin:@//localhost:1521/orcl";
             cn = DriverManager.getConnection(url, "lchiliguano", "lchiliguano");
             st = cn.createStatement();
             return cn;
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "NO FUE POSIBLE CONECTARSE \n " + e);
             return null;
         }
-    }    
-    
-    public static Statement getStatement() throws SQLException{
+    }
+
+    public static Statement getStatement() throws SQLException {
         Statement st = null;
         st = conectar().createStatement();
         return st;
     }
-    
-    public static PreparedStatement getPreparedStatement(String sql) throws SQLException{
+
+    public static PreparedStatement getPreparedStatement(String sql) throws SQLException {
         PreparedStatement ps = conectar().prepareStatement(sql);
         return ps;
     }
-    
-    public static ResultSet getResultSet(String sql) throws SQLException{
-         ResultSet rs = null;
-         rs = getStatement().executeQuery(sql);
-         return rs;
+
+    public static ResultSet getResultSet(String sql) throws SQLException {
+        ResultSet rs = null;
+        rs = getStatement().executeQuery(sql);
+        return rs;
     }
-    
-    
-    public static void Cerrar(Connection cn) throws SQLException{
+
+    public static void Cerrar(Connection cn) throws SQLException {
         cn.close();
     }
-    
-    public static void Cerrar(PreparedStatement ps) throws SQLException{
+
+    public static void Cerrar(PreparedStatement ps) throws SQLException {
         ps.close();
     }
-    
-    public static void Cerrar(ResultSet rs) throws SQLException{
+
+    public static void Cerrar(ResultSet rs) throws SQLException {
         rs.close();
     }
 }

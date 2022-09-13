@@ -76,11 +76,12 @@ public class JFSignInUser extends javax.swing.JFrame {
             } else {
 
                 JOptionPane.showMessageDialog(null,
-                        "Passwords are not the same");
+                        "Passwords Diferentes");
+                setEmptyLabels();
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Enter the fields correctly");
-
+            JOptionPane.showMessageDialog(null, "Ingrese los Campos Correctamente");
+            setEmptyLabels();
         }
 
     }
