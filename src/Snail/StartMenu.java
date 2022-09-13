@@ -10,6 +10,7 @@ import Login.JFScoresTable;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 public class StartMenu extends javax.swing.JFrame {
 
@@ -39,7 +40,7 @@ public class StartMenu extends javax.swing.JFrame {
             String nick = player.ObtenerNickDeCurrentActive(1);
             player.ModificarCurrentActiveA0(nick);
         } catch (SQLException ex) {
-            Logger.getLogger(StartMenu.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "ERROR INESPERADO" + ex);
         }
 
     }
@@ -77,7 +78,7 @@ public class StartMenu extends javax.swing.JFrame {
         Desk.setBackground(java.awt.Color.black);
 
         start1Player.setFont(new java.awt.Font("KenVector Future Thin", 0, 18)); // NOI18N
-        start1Player.setText("START GAME");
+        start1Player.setText("INICIAR JUEGO");
         start1Player.setBorder(null);
         start1Player.setBorderPainted(false);
         start1Player.setFocusPainted(false);
@@ -88,7 +89,7 @@ public class StartMenu extends javax.swing.JFrame {
         });
 
         Return.setFont(new java.awt.Font("KenVector Future Thin", 0, 18)); // NOI18N
-        Return.setText("RETURN");
+        Return.setText("VOLVER");
         Return.setBorder(null);
         Return.setBorderPainted(false);
         Return.setFocusPainted(false);
@@ -109,7 +110,6 @@ public class StartMenu extends javax.swing.JFrame {
         });
 
         jBExit.setFont(new java.awt.Font("KenVector Future Thin", 1, 12)); // NOI18N
-        jBExit.setForeground(new java.awt.Color(255, 51, 51));
         jBExit.setText("X");
         jBExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -118,7 +118,7 @@ public class StartMenu extends javax.swing.JFrame {
         });
 
         jBDeleteAccount.setFont(new java.awt.Font("KenVector Future Thin", 0, 18)); // NOI18N
-        jBDeleteAccount.setText("DELETE ACCOUNT");
+        jBDeleteAccount.setText("ELIMINAR CUENTA");
         jBDeleteAccount.setBorder(null);
         jBDeleteAccount.setBorderPainted(false);
         jBDeleteAccount.setFocusPainted(false);
@@ -151,15 +151,15 @@ public class StartMenu extends javax.swing.JFrame {
             .addGroup(DeskLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jBExit)
-                .addGap(64, 64, 64)
+                .addGap(36, 36, 36)
                 .addComponent(start1Player, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(40, 40, 40)
+                .addGap(34, 34, 34)
                 .addComponent(jBScores, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(48, 48, 48)
+                .addGap(37, 37, 37)
                 .addComponent(Return, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
+                .addGap(34, 34, 34)
                 .addComponent(jBDeleteAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap(43, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -184,7 +184,7 @@ public class StartMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_start1PlayerActionPerformed
 
     private void ReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ReturnActionPerformed
-        // TODO add your handling code here:
+        cambiarCurrentActive();
         exitGame();
 
     }//GEN-LAST:event_ReturnActionPerformed
@@ -194,7 +194,7 @@ public class StartMenu extends javax.swing.JFrame {
         try {
             viewScores();
         } catch (SQLException ex) {
-            Logger.getLogger(StartMenu.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "ERROR INESPERADO" + ex);
         }
     }//GEN-LAST:event_jBScoresActionPerformed
 
@@ -208,7 +208,8 @@ public class StartMenu extends javax.swing.JFrame {
         try {
             deleteAccount();
         } catch (SQLException ex) {
-            Logger.getLogger(StartMenu.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "ERROR AL ELIMINAR "
+                    + "\nINTENTELO DE NUEVO" + ex);
         }
         
         exitGame();

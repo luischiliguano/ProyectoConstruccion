@@ -74,14 +74,14 @@ public class PlayerConection {
         try {
             rst = Conection.getResultSet(sql);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            JOptionPane.showMessageDialog(null, "ERROR INESPERADO" + e);
         }
         try {
             while (rst.next()) {
                 password = rst.getString("PASSWORD");
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            JOptionPane.showMessageDialog(null, "ERROR INESPERADO" + e);
         }
         return password;
     }
@@ -92,7 +92,7 @@ public class PlayerConection {
         try {
             rst = Conection.getResultSet(sql);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            JOptionPane.showMessageDialog(null, "ERROR INESPERADO" + e);
         }
         try {
             while (rst.next()) {
@@ -100,7 +100,7 @@ public class PlayerConection {
                 //System.out.print("xdd");
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            JOptionPane.showMessageDialog(null, "ERROR INESPERADO" + e);
         }
         System.out.print(nickName);
         return nickName;
@@ -117,11 +117,7 @@ public class PlayerConection {
             pst.setString(2, player.getNick());
             r = pst.executeUpdate();
 
-            if (r >= 1) {
-                JOptionPane.showMessageDialog(null, "Modificado con éxito");
-            } else {
-                JOptionPane.showMessageDialog(null, "NO SE PUDO MODIFICAR!", "ATENCIÓN!", JOptionPane.ERROR_MESSAGE);
-            }
+            
         } finally {
             if (pst != null) {
                 Conection.Cerrar(pst);
@@ -143,11 +139,7 @@ public class PlayerConection {
             pst.setString(2, nick);
             r = pst.executeUpdate();
 
-            if (r >= 1) {
-                JOptionPane.showMessageDialog(null, "Modificado con éxito");
-            } else {
-                JOptionPane.showMessageDialog(null, "NO SE PUDO MODIFICAR!", "ATENCIÓN!", JOptionPane.ERROR_MESSAGE);
-            }
+            
         } finally {
             if (pst != null) {
                 Conection.Cerrar(pst);
@@ -165,7 +157,7 @@ public class PlayerConection {
         try {
             rst = Conection.getResultSet(sql);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            JOptionPane.showMessageDialog(null, "ERROR INESPERADO" + e);
         }
         try {
             while (rst.next()) {
@@ -173,7 +165,7 @@ public class PlayerConection {
                 //System.out.print("xdd");
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            JOptionPane.showMessageDialog(null, "ERROR INESPERADO" + e);
         }
         System.out.print(nickName);
         return nickName;
@@ -186,7 +178,7 @@ public class PlayerConection {
         try {
             rst = Conection.getResultSet(sql);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            JOptionPane.showMessageDialog(null, "ERROR INESPERADO" + e);
         }
         try {
             while (rst.next()) {
@@ -194,7 +186,7 @@ public class PlayerConection {
 
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e);
+            JOptionPane.showMessageDialog(null, "ERROR INESPERADO" + e);
         }
         System.out.print(id);
 

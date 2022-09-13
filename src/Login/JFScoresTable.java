@@ -173,7 +173,7 @@ public class JFScoresTable extends javax.swing.JFrame {
                 try {
                     new JFScoresTable().setVisible(true);
                 } catch (SQLException ex) {
-                    Logger.getLogger(JFScoresTable.class.getName()).log(Level.SEVERE, null, ex);
+                    JOptionPane.showMessageDialog(null, "ERROR INESPERADO" + ex);;
                 }
             }
         });
