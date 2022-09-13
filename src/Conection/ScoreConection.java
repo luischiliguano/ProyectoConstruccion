@@ -75,30 +75,4 @@ public class ScoreConection {
         return r;
     }
 
-    /*public Integer Modificar(Score score) throws SQLException {
-        Integer r = null;
-        try {
-            String sql = "update SCORE set VALUE = ? where PLAYER_ID = ?";
-            con = Conection.conectar();
-            pst = Conection.getPreparedStatement(sql);
-            pst.setInt(1, score.getValue());
-            pst.setInt(2, score.getPlayerID());
-            r = pst.executeUpdate();
-
-            if (r >= 1) {
-                JOptionPane.showMessageDialog(null, "Modificado con éxito");
-            } else {
-                JOptionPane.showMessageDialog(null, "NO SE PUDO MODIFICAR!", "ATENCIÓN!", JOptionPane.ERROR_MESSAGE);
-            }
-        } finally {
-            if (pst != null) {
-                Conection.Cerrar(pst);
-            }
-            if (con != null) {
-                Conection.Cerrar(con);
-            }
-        }
-        return r;
-    }*/
-
 }
